@@ -81,4 +81,8 @@ contract VestingContractTest is Test {
         vestingContract.addEmployee(fakeEmployee, 1000);
     }
 
+    function testVesting() public {
+
+    }
+
 }
