@@ -2,6 +2,9 @@
 
 A payer deposits a certain amount of tokens into a contract, but the receiver can only withdraw 1/n tokens over the course of n days.
 
+- [Optimism Deployment Token](https://goerli-optimism.etherscan.io/address/0xa340bb99457d4e676824da9f20bd9df1684b1529)
+- [Optimism Token Vesting](https://goerli-optimism.etherscan.io/address/0x8f2505b1aa4b22f746ea832c79cf34dc39dac41b)
+
 ## Usage
 
 ### Build
