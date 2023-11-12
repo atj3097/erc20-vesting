@@ -82,7 +82,15 @@ contract VestingContractTest is Test {
     }
 
     function testVesting() public {
-
+        for (uint i = 0; i < 30; i++) {
+            vestingContract.updateDaysSinceLastUnlock();
+        }
+        console.log("Days since last unlock:", vestingContract.daysSincelastUnlock());
+        assertEq(vestingContract.daysSincelastUnlock(), 30);
+        uint pre = IERC20(companyMockERC20).balanceOf(address(fakeEmployees[0]));
+        vestingContract.unlockTokens();
+        uint post = IERC20(companyMockERC20).balanceOf(address(fakeEmployees[0]));
+        assertEq(post, 83);
     }
 
 }

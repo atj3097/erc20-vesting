@@ -54,9 +54,10 @@ contract VestingContract {
         IERC20(companyToken).transferFrom(msg.sender, address(this), depositAmount);
     }
 
-    function updateDaysSinceLastUnlock() public isEmployer {
+    function updateDaysSinceLastUnlock() public isEmployer returns (uint256){
         //called by an external timer that triggers this function every 24 hours offchain
         daysSincelastUnlock += 1;
+        return daysSincelastUnlock;
     }
 
     function unlockTokens() public isEmployer {
@@ -67,7 +68,7 @@ contract VestingContract {
 
             uint256 monthlyVestingAmount = employeeVestingAmounts[currentEmployee] / totalVestingMonths;
 
-            uint256 alreadyTransferred = IERC20(company).balanceOf(currentEmployee);
+            uint256 alreadyTransferred = IERC20(companyToken).balanceOf(currentEmployee);
             uint256 amountToTransfer = monthlyVestingAmount - alreadyTransferred;
             require(amountToTransfer > 0);
             IERC20(companyToken).transfer(currentEmployee, amountToTransfer);
