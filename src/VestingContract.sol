@@ -75,5 +75,9 @@ contract VestingContract {
         daysSincelastUnlock = 0;
     }
 
+    function getNumberOfEmployees() public view returns (uint) {
+        return employees.length;
+    }
+
 
 }

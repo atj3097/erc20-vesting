@@ -68,4 +68,17 @@ contract VestingContractTest is Test {
         vestingContract.unlockTokens();
     }
 
+    function testEmployeeManagement() public {
+        address fakeEmployee = 0x7000000000000000000000000000000000000007;
+        uint256 originalLength = vestingContract.getNumberOfEmployees();
+
+        vestingContract.addEmployee(fakeEmployee, 1000);
+
+        assertEq(vestingContract.isEmployeeLogic(fakeEmployee), true);
+        assertEq(vestingContract.getNumberOfEmployees() == originalLength + 1 , true);
+
+        vm.expectRevert("Employee already exists");
+        vestingContract.addEmployee(fakeEmployee, 1000);
+    }
+
 }
